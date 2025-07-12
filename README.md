@@ -1,4 +1,5 @@
 # lab_recap-react-state-and-events
+
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
 # LAB | React Student List Manager
@@ -97,23 +98,23 @@ Let's get our project ready.
     // src/students.ts
     export const studentsData = [
       {
-        _id: "1a",
-        fullName: "Anna Smith",
-        image: "https://randomuser.me/api/portraits/women/85.jpg",
-        phone: "123-456-7890",
-        email: "anna.smith@example.com",
-        program: "Web Dev",
-        graduated: true,
+        _id: '1a',
+        fullName: 'Anna Smith',
+        image: 'https://randomuser.me/api/portraits/women/85.jpg',
+        phone: '123-456-7890',
+        email: 'anna.smith@example.com',
+        program: 'Web Dev',
+        graduated: true
       },
       {
-        _id: "2b",
-        fullName: "Ben Carter",
-        image: "https://randomuser.me/api/portraits/men/32.jpg",
-        phone: "234-567-8901",
-        email: "ben.carter@example.com",
-        program: "UX/UI",
-        graduated: false,
-      },
+        _id: '2b',
+        fullName: 'Ben Carter',
+        image: 'https://randomuser.me/api/portraits/men/32.jpg',
+        phone: '234-567-8901',
+        email: 'ben.carter@example.com',
+        program: 'UX/UI',
+        graduated: false
+      }
     ];
     ```
 
@@ -140,38 +141,28 @@ First, let's display the initial list of students.
 <details>
   <summary>Click for Solution</summary>
 
-**`src/App.tsx`**
+**`src/App.jsx`**
 
-```tsx
-import { useState } from "react";
-import "./App.css";
-import { studentsData } from "./students";
-
-// Define the type for a student
-type Student = {
-  _id: string;
-  fullName: string;
-  image: string;
-  phone: string;
-  email: string;
-  program: string;
-  graduated: boolean;
-};
+```jsx
+import { useState } from 'react';
+import './App.css';
+import { studentsData } from './students';
 
 function App() {
-  const [students, setStudents] = useState<Student[]>(studentsData);
+  const [students, setStudents] = useState(studentsData);
 
   return (
     <div className="App">
       <h1>Student List</h1>
       <div className="student-list">
-        {students.map((student) => (
+        {students.map(student => (
           <div key={student._id} className="student-card">
             <img src={student.image} alt={student.fullName} />
             <h3>{student.fullName}</h3>
             <p>Program: {student.program}</p>
             <p>Email: {student.email}</p>
             <p>Phone: {student.phone}</p>
+            <p>Graduated: {student.graduated ? 'Yes' : 'No'}</p>
           </div>
         ))}
       </div>
@@ -222,7 +213,7 @@ Now, let's build the form for adding new students. We'll create a separate compo
 1.  **Create the `AddStudentForm` component.**
 
     - Create a new folder `src/components`.
-    - Inside it, create a new file `AddStudentForm.tsx`.
+    - Inside it, create a new file `AddStudentForm.jsx`.
     - In this file, create a functional component that returns a `<form>`.
 
 2.  **Build the form structure.**
@@ -251,17 +242,17 @@ Now, let's build the form for adding new students. We'll create a separate compo
 <details>
   <summary>Click for Solution</summary>
 
-**`src/components/AddStudentForm.tsx`**
+**`src/components/AddStudentForm.jsx`**
 
-```tsx
-import { useState } from "react";
+```jsx
+import { useState } from 'react';
 
 function AddStudentForm() {
-  const [fullName, setFullName] = useState("");
-  const [image, setImage] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [program, setProgram] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [image, setImage] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [program, setProgram] = useState('');
   const [graduated, setGraduated] = useState(false);
 
   return (
@@ -269,39 +260,23 @@ function AddStudentForm() {
       <h2>Add New Student</h2>
       <div>
         <label>Full Name:</label>
-        <input
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
+        <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} />
       </div>
       <div>
         <label>Image URL:</label>
-        <input
-          type="url"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
+        <input type="url" value={image} onChange={e => setImage(e.target.value)} />
       </div>
       <div>
         <label>Phone:</label>
-        <input
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
+        <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} />
       </div>
       <div>
         <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
       </div>
       <div>
         <label>Program:</label>
-        <select value={program} onChange={(e) => setProgram(e.target.value)}>
+        <select value={program} onChange={e => setProgram(e.target.value)}>
           <option value="">-- Please select --</option>
           <option value="Web Dev">Web Dev</option>
           <option value="UX/UI">UX/UI</option>
@@ -310,11 +285,7 @@ function AddStudentForm() {
       </div>
       <div>
         <label>Graduated:</label>
-        <input
-          type="checkbox"
-          checked={graduated}
-          onChange={(e) => setGraduated(e.target.checked)}
-        />
+        <input type="checkbox" checked={graduated} onChange={e => setGraduated(e.target.checked)} />
       </div>
       <button type="submit">Add Student</button>
     </form>
@@ -332,7 +303,7 @@ export default AddStudentForm;
 
 The form is ready, but it doesn't do anything yet. The `AddStudentForm` component has the form data, but the `App` component owns the list of students. We need to get the data from the child (`AddStudentForm`) to the parent (`App`). This is a classic React pattern called "Lifting State Up".
 
-1.  **Create an `addStudent` function in `App.tsx`.**
+1.  **Create an `addStudent` function in `App.jsx`.**
 
     - This function will accept one argument: a new student object.
     - Inside the function, use the `setStudents` state setter to update the list. Create a _new_ array containing all the old students plus the new one.
@@ -342,11 +313,11 @@ The form is ready, but it doesn't do anything yet. The `AddStudentForm` componen
 
 2.  **Pass the function as a prop.**
 
-    - Render the `<AddStudentForm />` component inside `App.tsx`.
+    - Render the `<AddStudentForm />` component inside `App.jsx`.
     - Pass the `addStudent` function you just created as a prop to the form component. You can name the prop `onAddStudent`.
 
-3.  **Handle the form submission in `AddStudentForm.tsx`.**
-    - Accept the `onAddStudent` function from the props. Define the types for your component's props.
+3.  **Handle the form submission in `AddStudentForm.jsx`.**
+    - Accept the `onAddStudent` function from the props.
     - Create a `handleSubmit` function that will be called when the form is submitted.
     - In `handleSubmit`:
       - Call `event.preventDefault()` to stop the page from reloading.
@@ -358,30 +329,19 @@ The form is ready, but it doesn't do anything yet. The `AddStudentForm` componen
 <details>
   <summary>Click for Solution</summary>
 
-**`src/App.tsx` (updated)**
+**`src/App.jsx` (updated)**
 
-```tsx
-import { useState } from "react";
-import "./App.css";
-import { studentsData } from "./students";
-import AddStudentForm from "./components/AddStudentForm"; // Import the form
-
-// Type definition remains the same
-type Student = {
-  _id: string;
-  fullName: string;
-  image: string;
-  phone: string;
-  email: string;
-  program: string;
-  graduated: boolean;
-};
+```jsx
+import { useState } from 'react';
+import './App.css';
+import { studentsData } from './students';
+import AddStudentForm from './components/AddStudentForm'; // Import the form
 
 function App() {
-  const [students, setStudents] = useState<Student[]>(studentsData);
+  const [students, setStudents] = useState(studentsData);
 
   // Function to add a new student
-  const addStudent = (newStudent: Student) => {
+  const addStudent = newStudent => {
     setStudents([...students, newStudent]);
   };
 
@@ -392,14 +352,14 @@ function App() {
 
       <h1>Student List</h1>
       <div className="student-list">
-        {students.map((student) => (
+        {students.map(student => (
           <div key={student._id} className="student-card">
             <img src={student.image} alt={student.fullName} />
             <h3>{student.fullName}</h3>
             <p>Program: {student.program}</p>
             <p>Email: {student.email}</p>
             <p>Phone: {student.phone}</p>
-            <p>Graduated: {student.graduated ? "Yes" : "No"}</p>
+            <p>Graduated: {student.graduated ? 'Yes' : 'No'}</p>
           </div>
         ))}
       </div>
@@ -410,33 +370,20 @@ function App() {
 export default App;
 ```
 
-**`src/components/AddStudentForm.tsx` (updated)**
+**`src/components/AddStudentForm.jsx` (updated)**
 
-```tsx
-import { useState, FormEvent } from "react";
+```jsx
+import { useState } from 'react';
 
-// Define the type for the props
-type AddStudentFormProps = {
-  onAddStudent: (student: {
-    _id: string;
-    fullName: string;
-    image: string;
-    phone: string;
-    email: string;
-    program: string;
-    graduated: boolean;
-  }) => void;
-};
-
-function AddStudentForm({ onAddStudent }: AddStudentFormProps) {
-  const [fullName, setFullName] = useState("");
-  const [image, setImage] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [program, setProgram] = useState("");
+function AddStudentForm({ onAddStudent }) {
+  const [fullName, setFullName] = useState('');
+  const [image, setImage] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [program, setProgram] = useState('');
   const [graduated, setGraduated] = useState(false);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = event => {
     event.preventDefault(); // Prevent page reload
 
     const newStudent = {
@@ -446,17 +393,17 @@ function AddStudentForm({ onAddStudent }: AddStudentFormProps) {
       phone,
       email,
       program,
-      graduated,
+      graduated
     };
 
     onAddStudent(newStudent); // Call the function from props
 
     // Reset form fields
-    setFullName("");
-    setImage("");
-    setPhone("");
-    setEmail("");
-    setProgram("");
+    setFullName('');
+    setImage('');
+    setPhone('');
+    setEmail('');
+    setProgram('');
     setGraduated(false);
   };
 
@@ -466,47 +413,23 @@ function AddStudentForm({ onAddStudent }: AddStudentFormProps) {
       <h2>Add New Student</h2>
       <div>
         <label>Full Name:</label>
-        <input
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
+        <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} required />
       </div>
       <div>
         <label>Image URL:</label>
-        <input
-          type="url"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          required
-        />
+        <input type="url" value={image} onChange={e => setImage(e.target.value)} required />
       </div>
       <div>
         <label>Phone:</label>
-        <input
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-        />
+        <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} required />
       </div>
       <div>
         <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
       </div>
       <div>
         <label>Program:</label>
-        <select
-          value={program}
-          onChange={(e) => setProgram(e.target.value)}
-          required
-        >
+        <select value={program} onChange={e => setProgram(e.target.value)} required>
           <option value="">-- Please select --</option>
           <option value="Web Dev">Web Dev</option>
           <option value="UX/UI">UX/UI</option>
@@ -515,11 +438,7 @@ function AddStudentForm({ onAddStudent }: AddStudentFormProps) {
       </div>
       <div>
         <label>Graduated:</label>
-        <input
-          type="checkbox"
-          checked={graduated}
-          onChange={(e) => setGraduated(e.target.checked)}
-        />
+        <input type="checkbox" checked={graduated} onChange={e => setGraduated(e.target.checked)} />
       </div>
       <button type="submit">Add Student</button>
     </form>
