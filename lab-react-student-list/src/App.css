@@ -1,0 +1,12 @@
+.App { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+.form { display: grid; gap: 10px; margin-bottom: 20px; }
+.form label { display: grid; gap: 6px; }
+.form input, .form select, .form button { padding: 8px; }
+.checkbox { display: flex; align-items: center; gap: 8px; }
+
+.student-list { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.student-card {
+  border: 1px solid #ddd; border-radius: 8px; padding: 1rem; width: 250px;
+  text-align: center; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+.student-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
